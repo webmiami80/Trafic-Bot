@@ -55,19 +55,7 @@ class ProxyFetcherGUI(QMainWindow):
         proxies = get_all_proxies()
         self.text_edit.append("\n".join(proxies))
 
-    
     def check_and_display_proxies(self):
-        # Uruchomienie procesu sprawdzania proxy w oddzielnym wątku
-        threading.Thread(target=self.run_check_proxies_thread).start()
-
-    def run_check_proxies_thread(self):
-        # Ta metoda będzie uruchamiana w oddzielnym wątku
-        proxies = self.text_edit.toPlainText().split('\n')
-        working_proxies = check_proxies(proxies)
-        # Wywołanie metody aktualizacji interfejsu w głównym wątku
-        self.text_edit.clear()
-        self.text_edit.append("\n".join(working_proxies))
-def check_and_display_proxies(self):
         proxies = self.text_edit.toPlainText().split('\n')
         working_proxies = check_proxies(proxies)
         self.text_edit.clear()
