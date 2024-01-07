@@ -1,9 +1,5 @@
-
 import requests
 import concurrent.futures
-
-# Lista proxy do sprawdzenia
-proxies = ['123.123.123.123:8080', '124.124.124.124:8080', '125.125.125.125:8080']
 
 def check_proxy(proxy):
     try:
@@ -21,6 +17,3 @@ def check_proxies(proxy_list):
             if result:
                 working_proxies.append(result)
     return working_proxies
-
-# Uruchomienie sprawdzania proxy
-working_proxies = check_proxies(proxies)

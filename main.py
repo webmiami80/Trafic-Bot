@@ -1,7 +1,11 @@
 import sys
+import threading
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit, QPushButton, QVBoxLayout, QWidget, QTabWidget
 from PyQt5.QtGui import QPixmap, QPalette, QBrush
 from PyQt5.QtCore import QSize
+from proxy_scraper import get_all_proxies
+from proxy_checker import check_proxies
+# Importuj funkcje z traffic_generator.py tutaj
 
 class ProxyFetcherGUI(QMainWindow):
     def __init__(self):
@@ -9,47 +13,20 @@ class ProxyFetcherGUI(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        self.setWindowTitle("Proxy Fetcher")
-        self.setGeometry(100, 100, 800, 600)
+        # Konfiguracja GUI
+        # ...
 
-        # Ustawienie tła (upewnij się, że ścieżka do obrazu jest poprawna)
-        oImage = QPixmap(r'H:\bot\tlo.jpg')  # Zmień na właściwą ścieżkę
-        sImage = oImage.scaled(QSize(800, 600))  # Dostosuj rozmiar do potrzeb
-        palette = QPalette()
-        palette.setBrush(QPalette.Window, QBrush(sImage))
-        self.setPalette(palette)
+    def fetch_and_display_proxies(self):
+        # Funkcja do pobierania i wyświetlania proxy
+        # ...
 
-        # Tworzenie zakładek
-        self.tabs = QTabWidget()
-        self.tab1 = QWidget()
-        self.tab2 = QWidget()
+    def check_and_display_proxies(self):
+        # Funkcja do sprawdzania i wyświetlania działających proxy
+        # ...
 
-        # Dodawanie zakładek
-        self.tabs.addTab(self.tab1, "Tab 1")
-        self.tabs.addTab(self.tab2, "Tab 2")
-
-        # Tworzenie layoutów dla zakładek
-        self.tab1.layout = QVBoxLayout()
-        self.tab2.layout = QVBoxLayout()
-
-        # Dodawanie widgetów do pierwszej zakładki
-        self.text_edit = QTextEdit()
-        self.tab1.layout.addWidget(self.text_edit)
-        self.button = QPushButton("Fetch Proxies")
-        self.tab1.layout.addWidget(self.button)
-        self.tab1.setLayout(self.tab1.layout)
-
-        # Tutaj możesz dodać widgety do drugiej zakładki
-
-        # Ustawianie zakładek jako centralnego widgetu
-        self.setCentralWidget(self.tabs)
-
-        # Połączenie sygnałów z przyciskiem (jeśli potrzebne)
-        self.button.clicked.connect(self.on_button_click)
-
-    def on_button_click(self):
-        # Logika obsługi przycisku
-        self.text_edit.append("Button clicked!")
+    def generate_traffic(self):
+        # Funkcja do generowania ruchu
+        # Tu dodaj logikę z traffic_generator.py
 
 def main():
     app = QApplication(sys.argv)
