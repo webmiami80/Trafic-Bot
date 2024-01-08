@@ -18,6 +18,18 @@ proxy_sources = [
     'https://www.proxy-list.download/HTTPS',
     'https://www.proxy-list.download/SOCKS4',
     'https://www.proxy-list.download/SOCKS5',
+    'https://spys.one/free-proxy-list/',
+    'https://raw.githubusercontent.com/dotargz/proxy-list-unblocked/master/proxy-list-status.txt',
+    'https://proxyhulk.com/free_proxies',
+    'http://www.zahodi-ka.ru/proxy/list.shtml',
+    'https://raw.githubusercontent.com/Zaeem20/FREE_PROXIES_LIST/master/socks5.txt',
+    'https://www.beesproxy.com/free',
+    'https://amicopirata.altervista.org/proxy_https_gratis',
+    'https://raw.githubusercontent.com/Zaeem20/FREE_PROXIES_LIST/master/http.txt',
+    'https://www.proxy-list.download/SOCKS5',
+    'https://www.proxy-list.download/SOCKS4',
+    'https://www.proxy-list.download/HTTP',
+    'https://www.proxy-list.download/HTTPS',
     # Dodaj więcej źródeł według potrzeb
 ]
 
@@ -53,3 +65,12 @@ def refresh_proxies(interval=60):
 
 # Uruchomienie odświeżania proxy w oddzielnym wątku
 threading.Thread(target=refresh_proxies).start()
+
+def improved_scrape_proxies(source_url):
+    # Improved scraping logic goes here
+    # For simplicity, this is a placeholder for the actual logic which would use robust CSS selectors or XPath expressions.
+    pass
+
+def bypass_captcha(page_content):
+    # Placeholder for CAPTCHA bypass logic, which could involve using services like 2Captcha, Anti-CAPTCHA, or implementing an AI solver.
+    pass

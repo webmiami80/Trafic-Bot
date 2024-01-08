@@ -251,3 +251,55 @@ schedule.every(1).hour.do(job)
 while True:
     schedule.run_pending()
     time.sleep(1)
+
+def simulate_user_actions(browser):
+    # Wait for the page to load
+    time.sleep(random.uniform(1, 3))
+    # Simulate different user actions such as scrolling, clicking, and typing
+    actions = ActionChains(browser)
+    actions.send_keys(Keys.PAGE_DOWN).perform()  # Scroll down
+    time.sleep(random.uniform(0.5, 1.5))
+    links = browser.find_elements(By.TAG_NAME, 'a')
+    if links:
+        random.choice(links).click()  # Click on a random link
+    # Additional actions can be added here
+
+def create_browser(browser_name, proxy=None):
+    if browser_name == 'chrome':
+        options = webdriver.ChromeOptions()
+        # Set options for Chrome
+        if proxy:
+            options.add_argument(f'--proxy-server={proxy}')
+        return webdriver.Chrome(options=options)
+    elif browser_name == 'firefox':
+        options = webdriver.FirefoxOptions()
+        # Set options for Firefox
+        if proxy:
+            options.add_argument(f'--proxy-server={proxy}')
+        return webdriver.Firefox(options=options)
+    # Add support for other browsers here
+
+        # Set options for Firefox
+        if proxy:
+            options.set_preference('network.proxy.type', 1)
+            options.set_preference('network.proxy.http', proxy.split(':')[0])
+            options.set_preference('network.proxy.http_port', int(proxy.split(':')[1]))
+            options.set_preference('network.proxy.ssl', proxy.split(':')[0])
+            options.set_preference('network.proxy.ssl_port', int(proxy.split(':')[1]))
+        return webdriver.Firefox(options=options)
+    else:
+        raise ValueError('Unsupported browser!')
+
+def generate_traffic_with_retry(url, browser_name, proxy=None, retry_count=3):
+    attempts = 0
+    while attempts < retry_count:
+        try:
+            browser = create_browser(browser_name, proxy)
+            browser.get(url)
+            simulate_user_actions(browser)
+            break  # If successful, exit the loop
+        except Exception as e:
+            logging.error(f'Error during traffic generation: {e}')
+            attempts += 1
+        finally:
+            browser.quit()

@@ -17,3 +17,21 @@ def check_proxies(proxy_list):
             if result:
                 working_proxies.append(result)
     return working_proxies
+
+def is_proxy_working(proxy):
+    # Performing a series of tests to check the proxy quality
+    # For example, making requests to multiple endpoints
+    endpoints = ['http://example.com', 'https://api.ipify.org']
+    for endpoint in endpoints:
+        try:
+            response = requests.get(endpoint, proxies={'http': proxy, 'https': proxy}, timeout=5)
+            if response.status_code != 200:
+                return False
+        except requests.RequestException:
+            return False
+    return True
+
+def check_socks_proxy(proxy):
+    # Implementing the logic to check a SOCKS proxy.
+    # This is just a placeholder as the actual implementation will depend on the SOCKS protocol version and other factors.
+    pass
